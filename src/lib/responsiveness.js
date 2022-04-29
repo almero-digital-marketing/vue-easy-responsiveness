@@ -3,7 +3,7 @@ import { readonly, reactive, computed} from 'vue'
 import Responsiveness from '../components/Responsiveness.vue'
 
 export default { 
-    install(app) {
+    install(app, options = {}) {
         const mediaQuery = reactive({})
         const mediaUnits = reactive({})
 
@@ -24,13 +24,14 @@ export default {
         const aspectRatio = () => Math.max(window.innerWidth, window.innerHeight) / Math.min(window.innerWidth, window.innerHeight)
         const initialAspectRation = aspectRatio()
         function respond() {
-            mediaQuery.desktop = window.innerWidth > 1380
-            mediaQuery.laptop = window.innerWidth <= 1380 && window.innerWidth > 1024
-            mediaQuery.tablet = window.innerWidth <= 1024 && window.innerWidth > 640
-            mediaQuery.phone = window.innerWidth <= 640
+            mediaQuery.desktop = window.innerWidth > (options.desktop || 1380)
+            mediaQuery.laptop = window.innerWidth <= (options.desktop || 1380) && window.innerWidth > (options.laptop || 1024)
+            mediaQuery.tablet = window.innerWidth <= options.laptop || 1024 && window.innerWidth > (options.phone || 640)
+            mediaQuery.phone = window.innerWidth <= options.phone || 640
+            mediaQuery.mini = window.innerWidth < options.mini || 360
+
             mediaQuery.pc = mediaQuery.desktop || mediaQuery.laptop
             mediaQuery.mobile = mediaQuery.tablet || mediaQuery.phone
-            mediaQuery.mini = window.innerWidth < 360
             
             mediaQuery.cinema = initialAspectRation >= 19 / 10
             mediaQuery.wide = initialAspectRation >= 16 / 10 && initialAspectRation < 19 / 10
@@ -83,8 +84,8 @@ export default {
         window.addEventListener('resize', respond)
 
         app.provide('mediaList', mediaList) 
-        app.provide('mediaQuery', readonly(mediaQuery))
         app.provide('mediaUnits', readonly(mediaUnits))
+        app.provide('mediaQuery', readonly(mediaQuery))
 
         Object.defineProperty(app.config.globalProperties, '$mediaQuery', readonly(mediaQuery))
 
