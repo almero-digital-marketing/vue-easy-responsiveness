@@ -1,5 +1,5 @@
 <template>
-    <div class="responsiveness" :class="mediaList" :style="mediaUnits">
+    <div class="responsive" :class="mediaList" :style="mediaUnits">
         <slot></slot>
     </div>
 </template>
@@ -11,16 +11,16 @@ const mediaUnits = inject('mediaUnits')
 </script>
 <style lang="css">
 @media (orientation: landscape) {
-    .responsiveness {
+    .responsive {
         --vh: 1vh !important;
     }
 }
 @media (orientation: portrait) {
-    .responsiveness {
+    .responsive {
         --vw: 1vw !important;
     }
 }
-.responsiveness {
+.responsive {
     --vh300: calc(300 * var(--vh));
     --vh250: calc(250 * var(--vh));
     --vh200: calc(200 * var(--vh));

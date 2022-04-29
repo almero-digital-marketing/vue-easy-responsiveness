@@ -1,6 +1,6 @@
 import { ask, registerOnChange } from 'what-input'
 import { readonly, reactive, computed} from 'vue'
-import Responsiveness from '../components/Responsiveness.vue'
+import Responsive from '../components/Responsive.vue'
 
 export default { 
     install(app, options = {}) {
@@ -88,6 +88,6 @@ export default {
 
         app.config.globalProperties.$mediaQuery = readonly(mediaQuery)
 
-        app.component('responsiveness', Responsiveness)
+        app.component('responsive', Responsive)
     }
 }
