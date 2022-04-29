@@ -16,7 +16,7 @@ const mediaUnits = inject('mediaUnits')
     }
 }
 @media (orientation: portrait) {
-    .responsiveness {    
+    .responsiveness {
         --vw: 1vw !important;
     }
 }

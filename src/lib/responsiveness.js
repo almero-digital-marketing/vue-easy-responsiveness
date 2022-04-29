@@ -26,9 +26,9 @@ export default {
         function respond() {
             mediaQuery.desktop = window.innerWidth > (options.desktop || 1380)
             mediaQuery.laptop = window.innerWidth <= (options.desktop || 1380) && window.innerWidth > (options.laptop || 1024)
-            mediaQuery.tablet = window.innerWidth <= options.laptop || 1024 && window.innerWidth > (options.phone || 640)
-            mediaQuery.phone = window.innerWidth <= options.phone || 640
-            mediaQuery.mini = window.innerWidth < options.mini || 360
+            mediaQuery.tablet = window.innerWidth <= (options.laptop || 1024) && window.innerWidth > (options.phone || 640)
+            mediaQuery.phone = window.innerWidth <= (options.phone || 640)
+            mediaQuery.mini = window.innerWidth < (options.mini || 360)
 
             mediaQuery.pc = mediaQuery.desktop || mediaQuery.laptop
             mediaQuery.mobile = mediaQuery.tablet || mediaQuery.phone
@@ -54,7 +54,6 @@ export default {
                 heightQuater: window.innerHeight / 4,
                 heightFifth: window.innerHeight / 5,
             }
-
 
             let currentUnitGuard = {
                 vw: mediaQuery.desktop ? (window.innerWidth / 100) : (screen.availWidth / 100),
@@ -87,7 +86,7 @@ export default {
         app.provide('mediaUnits', readonly(mediaUnits))
         app.provide('mediaQuery', readonly(mediaQuery))
 
-        Object.defineProperty(app.config.globalProperties, '$mediaQuery', readonly(mediaQuery))
+        app.config.globalProperties.$mediaQuery = readonly(mediaQuery)
 
         app.component('responsiveness', Responsiveness)
     }

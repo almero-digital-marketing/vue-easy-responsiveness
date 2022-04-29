@@ -2,7 +2,7 @@
 
 <template>
 	<responsiveness>
-		<h1>Responsiveness</h1>
+		<h1>Responsiveness: {{ $mediaQuery }}</h1>
 	</responsiveness>
 </template>
 
