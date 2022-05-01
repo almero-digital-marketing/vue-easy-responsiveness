@@ -6,16 +6,8 @@ export default {
     install(app, options = {}) {
         const mediaQuery = reactive({})
         const mediaUnits = reactive({})
-
-        const mediaList = computed(() => {
-            let list = []
-            for(let item in mediaQuery) {
-                if(mediaQuery[item]) list.push(item)
-                else list.push('not-' + item)
-            }
-            return list
-        })
-        
+        const mediaList = reactive([])
+       
         let unitGuard = {
             vw: 0,
             vh: 0
@@ -68,6 +60,12 @@ export default {
                 mediaUnits['--vw'] = unitGuard.vw + 'px'
                 mediaUnits['--vh'] = unitGuard.vh + 'px'
 
+            }
+
+            mediaList.length = -1
+            for(let item in mediaQuery) {
+                if(mediaQuery[item]) mediaList.push(item)
+                else mediaList.push('not-' + item)
             }
         }
         respond()
