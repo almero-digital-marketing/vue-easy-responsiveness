@@ -13,6 +13,14 @@ export default {
             vh: 0
         }
         
+        function updateClasses() {
+            mediaList.length = 0
+            for(let item in mediaQuery) {
+                if(mediaQuery[item]) mediaList.push(item)
+                else mediaList.push('not-' + item)
+            }
+        }
+
         const aspectRatio = () => Math.max(window.innerWidth, window.innerHeight) / Math.min(window.innerWidth, window.innerHeight)
         const initialAspectRation = aspectRatio()
         function respond() {
@@ -62,11 +70,7 @@ export default {
 
             }
 
-            mediaList.length = -1
-            for(let item in mediaQuery) {
-                if(mediaQuery[item]) mediaList.push(item)
-                else mediaList.push('not-' + item)
-            }
+            updateClasses()
         }
         respond()
 
@@ -74,13 +78,15 @@ export default {
             const intent = ask('intent')
             mediaQuery.mouse = intent == 'mouse'
             mediaQuery.touch = intent == 'touch'
+            
+            updateClasses()
         }
         whatIntent()
 
         registerOnChange(whatIntent, 'intent')
         window.addEventListener('resize', respond)
 
-        app.provide('mediaList', mediaList) 
+        app.provide('mediaList', readonly(mediaList)) 
         app.provide('mediaUnits', readonly(mediaUnits))
         app.provide('mediaQuery', readonly(mediaQuery))
 
