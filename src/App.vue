@@ -1,9 +1,9 @@
 
 
 <template>
-	<responsiveness>
+	<responsive>
 		<h1>Responsiveness: {{ $mediaQuery }}</h1>
-	</responsiveness>
+	</responsive>
 </template>
 
 <style>
@@ -14,5 +14,6 @@
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+	min-height: 300vh;
 }
 </style>

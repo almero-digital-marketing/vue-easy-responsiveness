@@ -1,13 +1,62 @@
 <template>
-    <div class="responsive" :class="mediaList" :style="mediaUnits">
+    <div class="responsive" 
+        :class="[
+            mediaList, 
+            { 
+                'scroll-forward': scrollInfo.forward, 
+                'scroll-backward': scrollInfo.backward 
+            }, 
+            { 
+                scrolling: isScrolling, 
+                'scrolling-up': directions.up, 
+                'scrolling-down': directions.down, 
+                'scroll-start': arrivedState.top, 
+                'scroll-end': arrivedState.bottom,
+                'above-the-fold': aboveTheFold,
+                'below-the-fold': !aboveTheFold,
+                'above-the-end': aboveTheEnd,
+                'below-the-end': !aboveTheEnd,
+            }
+        ]" 
+        :style="mediaUnits"
+    >
         <slot></slot>
     </div>
 </template>
 <script setup>
-import { inject } from 'vue'
+import { inject, reactive, watch, computed } from 'vue'
+import { useScroll } from '@vueuse/core'
 
 const mediaList = inject('mediaList')
 const mediaUnits = inject('mediaUnits')
+
+const { isScrolling, arrivedState, directions, y } = useScroll(window)
+
+const aboveTheFold = computed(() => {
+    return y.value < document.documentElement.scrollHeight
+})
+
+const aboveTheEnd = computed(() => {
+    return y.value + window.innerHeight < document.body.scrollHeight
+})
+
+const scrollInfo = reactive({
+    forward: false,
+    backward: false
+})
+
+watch(directions, () => {
+    if (directions.top || directions.bottom) {
+        if (directions.top) {
+            scrollInfo.backward = true
+            scrollInfo.forward = false
+        } else {
+            scrollInfo.backward = false
+            scrollInfo.forward = true
+        }
+    }
+})
+
 </script>
 <style lang="css">
 @media (orientation: landscape) {
