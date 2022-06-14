@@ -1,6 +1,5 @@
 import { ask, registerOnChange } from 'what-input'
-import { readonly, reactive, computed} from 'vue'
-import Responsive from '../components/Responsive.vue'
+import { readonly, reactive } from 'vue'
 
 export default { 
     install(app, options = {}) {
@@ -65,8 +64,8 @@ export default {
                 console.log('Recalculating units:', unitGuard, currentUnitGuard)
                 unitGuard = currentUnitGuard
 
-                mediaUnits['--vw'] = unitGuard.vw + 'px'
-                mediaUnits['--vh'] = unitGuard.vh + 'px'
+                mediaUnits.vw = unitGuard.vw + 'px'
+                mediaUnits.vh = unitGuard.vh + 'px'
 
             }
 
@@ -91,7 +90,5 @@ export default {
         app.provide('mediaQuery', readonly(mediaQuery))
 
         app.config.globalProperties.$mediaQuery = readonly(mediaQuery)
-
-        app.component('responsive', Responsive)
     }
 }

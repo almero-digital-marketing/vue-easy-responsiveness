@@ -18,14 +18,27 @@
                 'below-the-end': !aboveTheEnd,
             }
         ]" 
-        :style="mediaUnits"
     >
         <slot></slot>
     </div>
 </template>
 <script setup>
-import { inject, reactive, watch, computed } from 'vue'
+import { inject, reactive, watch, computed, toRefs } from 'vue'
 import { useScroll } from '@vueuse/core'
+
+const props = defineProps({
+    max: {
+        type: [Number, String],
+        default: undefined
+    }
+})
+
+const { max } = toRefs(props)
+const maxWidth = computed(() => {
+    if (!max.value) return '100vw'
+    if (typeof max.value == 'string') return max.value
+    return max.value + 'px'
+})
 
 const mediaList = inject('mediaList')
 const mediaUnits = inject('mediaUnits')
@@ -58,18 +71,16 @@ watch(directions, () => {
 })
 
 </script>
-<style lang="css">
-@media (orientation: landscape) {
-    .responsive {
-        --vh: 1vh !important;
-    }
-}
-@media (orientation: portrait) {
-    .responsive {
-        --vw: 1vw !important;
-    }
-}
+<style scoped>
 .responsive {
+    --max-width: v-bind(maxWidth);
+
+    --media-units-vh: v-bind(mediaUnits.vh);
+    --media-units-vw: v-bind(mediaUnits.vw);
+
+    --vw: calc(min(var(--max-width), 100 * var(--media-units-vw)) / 100);
+    --vh: var(--media-units-vh);
+
     --vh300: calc(300 * var(--vh));
     --vh250: calc(250 * var(--vh));
     --vh200: calc(200 * var(--vh));
@@ -159,5 +170,52 @@ watch(directions, () => {
     --vh-15: calc(-15 * var(--vh));
     --vh-10: calc(-10 * var(--vh));
     --vh-5: calc(-5 * var(--vh));
+
+    --vw100-1-3: calc(100/3 * var(--vw));
+    --vw100-2-3: calc(2 * 100/3 * var(--vw));
+    --vw100: calc(100 * var(--vw));
+    --vw95: calc(95 * var(--vw));
+    --vw90: calc(90 * var(--vw));
+    --vw85: calc(85 * var(--vw));
+    --vw80: calc(80 * var(--vw));
+    --vw75: calc(75 * var(--vw));
+    --vw70: calc(70 * var(--vw));
+    --vw65: calc(65 * var(--vw));
+    --vw60: calc(60 * var(--vw));
+    --vw55: calc(55 * var(--vw));
+    --vw50: calc(50 * var(--vw));
+    --vw45: calc(45 * var(--vw));
+    --vw40: calc(40 * var(--vw));
+    --vw35: calc(35 * var(--vw));
+    --vw30: calc(30 * var(--vw));
+    --vw25: calc(25 * var(--vw));
+    --vw20: calc(20 * var(--vw));
+    --vw15: calc(15 * var(--vw));
+    --vw10: calc(10 * var(--vw));
+    --vw5: calc(5 * var(--vw));
+
+    --vw-100-1-3: calc(-100/3 * var(--vw));
+    --vw-100-2-3: calc(-2 * 100/3 * var(--vw));
+    --vw-100: calc(-100 * var(--vw));
+    --vw-95: calc(-95 * var(--vw));
+    --vw-90: calc(-90 * var(--vw));
+    --vw-85: calc(-85 * var(--vw));
+    --vw-80: calc(-80 * var(--vw));
+    --vw-75: calc(-75 * var(--vw));
+    --vw-70: calc(-70 * var(--vw));
+    --vw-65: calc(-65 * var(--vw));
+    --vw-60: calc(-60 * var(--vw));
+    --vw-55: calc(-55 * var(--vw));
+    --vw-50: calc(-50 * var(--vw));
+    --vw-45: calc(-45 * var(--vw));
+    --vw-40: calc(-40 * var(--vw));
+    --vw-35: calc(-35 * var(--vw));
+    --vw-30: calc(-30 * var(--vw));
+    --vw-25: calc(-25 * var(--vw));
+    --vw-20: calc(-20 * var(--vw));
+    --vw-15: calc(-15 * var(--vw));
+    --vw-10: calc(-10 * var(--vw));
+    --vw-5: calc(-5 * var(--vw));
+
 }
 </style>
