@@ -4,8 +4,7 @@
     </div>
 </template>
 <script setup>
-import { computed } from "@vue/runtime-core"
-
+import { computed, toRefs } from 'vue'
 
 const props = defineProps({
     gap: {
