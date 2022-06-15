@@ -34,7 +34,7 @@ const props = defineProps({
 })
 
 const { max } = toRefs(props)
-const maxWidth = computed(() => {
+const _max = computed(() => {
     if (!max.value) return '100vw'
     if (typeof max.value == 'string') return max.value
     return max.value + 'px'
@@ -73,7 +73,7 @@ watch(directions, () => {
 </script>
 <style scoped>
 .responsive {
-    --max-width: v-bind(maxWidth);
+    --max-width: v-bind(_max);
 
     --media-units-vh: v-bind(mediaUnits.vh);
     --media-units-vw: v-bind(mediaUnits.vw);
