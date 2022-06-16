@@ -30,6 +30,14 @@ const props = defineProps({
     max: {
         type: [Number, String],
         default: undefined
+    }, 
+    fold: {
+        type: Number,
+        default: 0
+    },
+    end: {
+        type: Number,
+        default: 0
     }
 })
 
@@ -46,11 +54,11 @@ const mediaUnits = inject('mediaUnits')
 const { isScrolling, arrivedState, directions, y } = useScroll(window)
 
 const aboveTheFold = computed(() => {
-    return y.value < document.documentElement.scrollHeight
+    return y.value < document.documentElement.scrollHeight * props.fold
 })
 
 const aboveTheEnd = computed(() => {
-    return y.value + window.innerHeight < document.body.scrollHeight
+    return y.value + window.innerHeight < document.body.scrollHeight * props.end
 })
 
 const scrollInfo = reactive({
