@@ -52,11 +52,10 @@ const _columnGap = computed(() => normalizeUnits(gap.value || columnGap.value))
     --gr11: calc(11 * var(--gr1) + 10 * var(--column-gap));
     --gr12: calc(12 * var(--gr1) + 11 * var(--column-gap));
     
-    --gr12x1: calc((100vw - 2 * var(--content-gap)));
-    --gr12x2: calc((200vw - 2 * var(--content-gap)));
-    --gr12x3: calc((300vw - 2 * var(--content-gap)));
-    --gr12x4: calc((400vw - 2 * var(--content-gap)));
-    --gr12x5: calc((500vw - 2 * var(--content-gap)));
+    --gr12x2: calc(24 * var(--gr1) + 23 * var(--column-gap));
+    --gr12x3: calc(36 * var(--gr1) + 35 * var(--column-gap));
+    --gr12x4: calc(48 * var(--gr1) + 47 * var(--column-gap));
+    --gr12x5: calc(60 * var(--gr1) + 59 * var(--column-gap));
 
     --gr-1: calc(-1 * var(--gr1));
     --gr-1-2: calc(-1 * var(--gr1-2));
