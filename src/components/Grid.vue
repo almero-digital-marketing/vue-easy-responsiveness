@@ -34,7 +34,7 @@ const _columnGap = computed(() => normalizeUnits(gap.value || columnGap.value))
 
 </script>
 <style scoped>
-.size {
+.grid {
     --content-gap: v-bind(_contentGap);
     --column-gap: v-bind(_columnGap);
 

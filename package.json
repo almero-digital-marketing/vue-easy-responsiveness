@@ -1,6 +1,6 @@
 {
   "name": "vue-easy-responsiveness",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
