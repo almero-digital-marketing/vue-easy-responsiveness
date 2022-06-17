@@ -1,5 +1,5 @@
 <template>
-    <div class="size" ref="component">
+    <div class="grid" ref="component">
         <slot></slot>
     </div>
 </template>
