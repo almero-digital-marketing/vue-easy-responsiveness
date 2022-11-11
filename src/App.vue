@@ -1,8 +1,8 @@
 
 
 <template>
-	<responsive max="1204px">
-		<grid column-gap="16px">
+	<responsive max="var(--max)">
+		<grid column-gap="var(--gap)">
 			<div class="content">
 				<div class="third"></div>
 				<div class="third"></div>
@@ -27,6 +27,9 @@
 	color: #2c3e50;
 	margin-top: 60px;
 	min-height: 300vh;
+
+	--max: 1204px;
+	--gap: 16px;
 }
 .example-size {
 	width: 60vw;
@@ -46,7 +49,7 @@
 	width: var(--gr12);
 	margin: 0 auto;
 	display: flex;
-	gap: 16px;
+	gap: var(--gap);
 }
 .third {
 	width: var(--gr4);
