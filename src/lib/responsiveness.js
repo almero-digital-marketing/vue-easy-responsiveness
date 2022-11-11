@@ -55,9 +55,10 @@ export default {
             }
 
             let currentUnitGuard = {
-                vw: mediaQuery.desktop ? (window.innerWidth / 100) : (screen.availWidth / 100),
-                vh: mediaQuery.desktop ? (window.innerHeight / 100) : (screen.availHeight / 100)
+                vw: mediaQuery.desktop ? (document.body.clientWidth / 100) : (window.screen.availWidth / 100),
+                vh: mediaQuery.desktop ? (document.body.clientHeight / 100) : (window.screen.availHeight / 100)
             }
+            console.log(window.innerWidth, document.body.clientWidth)
             if (mediaQuery.desktop || 
                 Math.abs(currentUnitGuard.vw - unitGuard.vw) / currentUnitGuard.vw > .1 || 
                 Math.abs(currentUnitGuard.vh - unitGuard.vh) / currentUnitGuard.vh > .1) {

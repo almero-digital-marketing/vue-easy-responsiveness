@@ -70,5 +70,7 @@ const _columnGap = computed(() => normalizeUnits(gap.value || columnGap.value))
     --gr-10: calc(-1 * var(--gr10));
     --gr-11: calc(-1 * var(--gr11));
     --gr-12: calc(-1 * var(--gr12));
+
+    --grid-padding: calc((100 * var(--media-units-vw) - var(--gr12)) / 2);
 }
 </style>

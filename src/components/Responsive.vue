@@ -225,6 +225,6 @@ watch(directions, () => {
     --vw-10: calc(-10 * var(--vw));
     --vw-5: calc(-5 * var(--vw));
 
-    --max-padding: calc((100vw - var(--vw100)) / 2)
+    --max-padding: calc((100 * var(--media-units-vw) - var(--vw100)) / 2);
 }
 </style>
