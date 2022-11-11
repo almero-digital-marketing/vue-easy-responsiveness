@@ -1,12 +1,15 @@
 
 
 <template>
-	<responsive max="1360px">
-		<grid>
+	<responsive max="1204px">
+		<grid column-gap="16px">
 			<div class="content">
 				<div class="third"></div>
 				<div class="third"></div>
 				<div class="third"></div>
+			</div>
+			<div class="content">
+				<div class="box"></div>
 			</div>
 			<div class="measure"></div>
 			<h1>Responsiveness: {{ $mediaQuery }}</h1>
@@ -32,7 +35,7 @@
 }
 .measure {
 	background-color: green;
-	width: var(--max-padding);
+	width: var(--gr4);
 	height: var(--max-padding);
 	margin-left: var(--grid-padding);
 }
@@ -43,14 +46,26 @@
 	width: var(--gr12);
 	margin: 0 auto;
 	display: flex;
+	gap: 16px;
 }
 .third {
 	width: var(--gr4);
 	/* border: 1px solid blue; */
 	background-color: antiquewhite;
 	height: 100%;
+	flex-shrink: 0;
+	flex-grow: 0;
 }
 .third:nth-child(even) {
 	background-color: azure;
+}
+.content {
+	width: var(--gr12);
+}
+.box {
+	height: 100px;
+	background-color: pink;
+	width: var(--gr8);
+	margin-left: var(--pgr4);
 }
 </style>

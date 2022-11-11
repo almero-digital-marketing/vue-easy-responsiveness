@@ -71,6 +71,18 @@ const _columnGap = computed(() => normalizeUnits(gap.value || columnGap.value))
     --gr-11: calc(-1 * var(--gr11));
     --gr-12: calc(-1 * var(--gr12));
 
+    --pgr1: calc(var(--gr1) + var(--column-gap));
+    --pgr2: calc(var(--gr2) + var(--column-gap));
+    --pgr3: calc(var(--gr3) + var(--column-gap));
+    --pgr4: calc(var(--gr4) + var(--column-gap));
+    --pgr5: calc(var(--gr5) + var(--column-gap));
+    --pgr6: calc(var(--gr6) + var(--column-gap));
+    --pgr7: calc(var(--gr7) + var(--column-gap));
+    --pgr8: calc(var(--gr8) + var(--column-gap));
+    --pgr9: calc(var(--gr9) + var(--column-gap));
+    --pgr10: calc(var(--gr10) + var(--column-gap));
+    --pgr11: calc(var(--gr11) + var(--column-gap));
+
     --grid-padding: calc((100 * var(--media-units-vw) - var(--gr12)) / 2);
 }
 </style>
